@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\Response\PriceResponseDTO;
-use App\Service\CoinsService;
-use Illuminate\Http\Request;
+use App\Http\Clients\Contracts\CoinHttpInterface;
+use App\Http\Requests\PriceByCoinRequest;
+use App\Service\Contracts\CoinsServicInterface;
 
 class CoinsController extends Controller
 {
-    public function getPriceByCoin(Request $request)
+    private $service;
+
+    public function __construct(CoinsServicInterface $coinsService)
     {
-        //enviar para o servico de coins
-        //factor de qual coin enviar
-        //caso não consiga ele retorna para o banco local
-        $servicePrice = new CoinsService();
-        $servicePrice->getPriceByCoin($request->coin);
-        return  'price';
+        $this->service = $coinsService;
+    }
+
+    public function getPriceByCoin(PriceByCoinRequest $request)
+    {
+        dd($request->all());
+        try {
+            $responseController = $this->service->getPriceByCoin($request->coin);
+            return  response($responseController, 201);
+        } catch (\Exception $exception) {
+            return response($exception->getMessage(), $exception->getCode());
+        }
     }
 }

@@ -24,7 +24,7 @@ class PriceByCoinRequest extends FormRequest
     public function rules()
     {
         return [
-            'coin' => ['required', 'string', 'max:255'],
+            'coin' => 'required|string|max:255'
         ];
     }
 
