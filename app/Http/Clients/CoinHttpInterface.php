@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Clients\Contracts;
+namespace App\Http\Clients;
 
 use App\DTO\Response\PriceResponseDTO;
 

@@ -15,8 +15,8 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->integer("id_coin");
-            $table->decimal("price",12,10);
+            $table->integer("coin");
+            $table->decimal("price",12,4);
             $table->dateTime("snapshot");
             $table->timestamps();
         });
