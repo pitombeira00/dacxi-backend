@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Clients\CoinHttpInterface;
 use App\Http\Requests\PriceByCoinRequest;
-use App\Service\Contracts\CoinsServicInterface;
+use App\Services\Contracts\CoinsServicInterface;
 
 class CoinsController extends Controller
 {
@@ -18,8 +18,8 @@ class CoinsController extends Controller
     public function getPriceByCoin(PriceByCoinRequest $request)
     {
         try {
-            $responseController = $this->service->getPriceByCoin($request->coin);
-            return  response($responseController, 201);
+            $responseService = $this->service->getPriceByCoin($request->coin);
+            return  response($responseService->toArray(), 201);
         } catch (\Exception $exception) {
             return response($exception->getMessage(), $exception->getCode());
         }

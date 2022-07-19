@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Adapters\HttpClient\CoinGeckoClientAdapter;
 use App\Http\Clients\CoinHttpInterface;
-use App\Service\CoinsService;
-use App\Service\Contracts\CoinsServicInterface;
+use App\Services\CoinsService;
+use App\Services\Contracts\CoinsServicInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

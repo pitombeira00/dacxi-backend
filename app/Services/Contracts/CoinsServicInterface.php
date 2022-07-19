@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Clients;
+namespace App\Services\Contracts;
 
 use App\DTO\Response\PriceResponseDTO;
 
-interface CoinHttpInterface
+interface CoinsServicInterface
 {
     public function getPriceByCoin(string $coin): PriceResponseDTO;
 }

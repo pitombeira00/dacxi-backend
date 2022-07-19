@@ -10,7 +10,7 @@ class PriceResponseDTO implements Arrayable
     private float $price;
     private string $snapshot;
 
-    public function createToArray(array $data):self
+    public function createFromArray(array $data):self
     {
         $this->coin = $data['coin'];
         $this->price = $data['price'];
