@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Services\DTO\Response;
+namespace Tests\Unit\Repository\Services\DTO\Response;
 
 use App\DTO\Response\PriceResponseDTO;
 use Carbon\Carbon;

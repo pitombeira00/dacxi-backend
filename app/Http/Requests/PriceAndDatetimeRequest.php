@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PriceByCoinRequest extends FormRequest
+class PriceAndDatetimeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class PriceByCoinRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -26,7 +26,8 @@ class PriceByCoinRequest extends FormRequest
     public function rules()
     {
         return [
-            'coin' => 'required|string|max:255'
+            'coin' => 'required|string|max:255',
+            'datetime' => 'required|date_format:Y-m-d H:i:s'
         ];
     }
 
@@ -34,6 +35,7 @@ class PriceByCoinRequest extends FormRequest
     {
         return [
             'coin.required' => 'Coin is required (DACXI, ETH, ATOM, LUNA, BITCOIN).',
+            'datetime.required' => 'DateTime is required',
         ];
     }
 

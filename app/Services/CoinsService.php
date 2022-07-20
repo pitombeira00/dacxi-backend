@@ -3,31 +3,30 @@
 namespace App\Services;
 
 use App\DTO\Response\PriceResponseDTO;
-use App\Enums\CoinsGeckEnum;
 use App\Http\Clients\CoinHttpInterface;
-use App\Models\Price;
+use App\Repository\Contracts\PriceRepositoryInterface;
 use App\Services\Contracts\CoinsServicInterface;
 
 class CoinsService implements CoinsServicInterface
 {
     private $clientHttpGeck;
+    private $priceRepository;
 
-    public function __construct(CoinHttpInterface $coinHttp)
+    public function __construct(CoinHttpInterface $coinHttp, PriceRepositoryInterface $priceRepository)
     {
-            $this->clientHttpGeck = $coinHttp;
-
+        $this->clientHttpGeck = $coinHttp;
+        $this->priceRepository = $priceRepository;
     }
 
-    public function getPriceByCoin(string $coin) : PriceResponseDTO
+    public function getPriceByCoin(string $coin): PriceResponseDTO
     {
         try {
-            $responseApi = $this->clientHttpGeck->getPriceByCoin($coin);
-            Price::create($responseApi->toArray());
-        }catch (\Exception $exception){
-
-            throw new \Exception($exception->getMessage(),$exception->getCode());
+            $priceResponseDTO = $this->clientHttpGeck->getPriceByCoin($coin);
+            $reponse = $this->priceRepository->save($priceResponseDTO);
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage(), $exception->getCode());
         }
 
-        return $responseApi;
+        return $reponse;
     }
 }
