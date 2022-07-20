@@ -15,7 +15,7 @@ class PriceAndDatetimeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,7 +27,7 @@ class PriceAndDatetimeRequest extends FormRequest
     {
         return [
             'coin' => 'required|string|max:255',
-            'datetime' => 'required|date_format:Y-m-d H:i:s'
+            'datetime' => 'required|date_format:Y-m-d H:i'
         ];
     }
 
@@ -35,7 +35,7 @@ class PriceAndDatetimeRequest extends FormRequest
     {
         return [
             'coin.required' => 'Coin is required (DACXI, ETH, ATOM, LUNA, BITCOIN).',
-            'datetime.required' => 'DateTime is required',
+            'datetime.required' => 'DateTime is required, Format(YYYY-MM-DD HH:II)',
         ];
     }
 

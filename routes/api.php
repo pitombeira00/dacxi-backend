@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('coin/price',[CoinsController::class,'getPriceByCoin']);
+Route::post('coin/estimated/price',[CoinsController::class,'getEstimatedPriceByCoin']);
 
 
