@@ -8,6 +8,8 @@ use App\Http\Clients\CoinHttpInterface;
 use App\Repository\Contracts\PriceRepositoryInterface;
 use App\Repository\PriceRepository;
 use App\Services\CoinsService;
+use App\Services\Contracts\EstimateCoinServiceInterface;
+use App\Services\EstimateCoinService;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
@@ -16,15 +18,19 @@ class CoinsServiceTest extends TestCase
     private CoinHttpInterface $coinHttpMock;
     private CoinsService $coinsService;
     private PriceRepositoryInterface $priceMock;
+    private EstimateCoinServiceInterface $estimeteCoins;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->coinHttpMock = $this->createMock(CoinGeckoClientAdapter::class);
         $this->priceMock = $this->createMock(PriceRepository::class);
+        $this->estimeteCoins = $this->createMock(EstimateCoinService::class);
+
         $this->coinsService = new CoinsService(
             $this->coinHttpMock,
-            $this->priceMock
+            $this->priceMock,
+            $this->estimeteCoins
         );
     }
 
