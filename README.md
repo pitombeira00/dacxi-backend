@@ -49,6 +49,7 @@ Accept: application/json
 ```
 {
   "coin": "bitcoin",
+  "datetime": "2022-20-12 09:00" 
 }
 ```
 ## License
